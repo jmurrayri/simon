@@ -1,0 +1,13 @@
+{
+  "main.css": "/simon/static/css/main.43cfc624.chunk.css",
+  "main.js": "/simon/static/js/main.d37eb361.chunk.js",
+  "main.js.map": "/simon/static/js/main.d37eb361.chunk.js.map",
+  "runtime~main.js": "/simon/static/js/runtime~main.24bf3572.js",
+  "runtime~main.js.map": "/simon/static/js/runtime~main.24bf3572.js.map",
+  "static/js/2.d674bac7.chunk.js": "/simon/static/js/2.d674bac7.chunk.js",
+  "static/js/2.d674bac7.chunk.js.map": "/simon/static/js/2.d674bac7.chunk.js.map",
+  "index.html": "/simon/index.html",
+  "precache-manifest.4ac19583bfeaba494fa740819d09b9d7.js": "/simon/precache-manifest.4ac19583bfeaba494fa740819d09b9d7.js",
+  "service-worker.js": "/simon/service-worker.js",
+  "static/css/main.43cfc624.chunk.css.map": "/simon/static/css/main.43cfc624.chunk.css.map"
+}
