@@ -5,4 +5,5 @@ export default {
     yellow: 'yellow',
     blue: 'blue',
     green: 'green',
+    fail: 'fail',
 };

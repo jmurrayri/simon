@@ -32,6 +32,10 @@ export default class Simon extends PureComponent {
         this.audios[constants.green] = new Audio(`./audio/${constants.green}.mp3`);
         this.audios[constants.red] = new Audio(`./audio/${constants.red}.mp3`);
         this.audios.fail = new Audio('./audio/fail.mp3');
+
+        const sounds = [constants.red, constants.blue, constants.yellow, constants.green, constants.fail];
+        
+        this.soundsHack = {};
     }
 
     async next() {
@@ -80,6 +84,15 @@ export default class Simon extends PureComponent {
         if (targetSequence.length === 0 || buildingTargetSequence || litColor || targetSequence.length === userSequence.length) {
             return;
         }
+
+        // IOS allows only one sound to play per click.  We are hacking around that by playing and immediately pausing each
+        // sound on a click.    
+        const nextKey = Object.keys(this.audios).find(key => !this.soundsHack[key]);
+        if (nextKey) {
+            this.soundsHack[nextKey] = true;
+            this.audios[nextKey].play();
+            this.audios[nextKey].pause();
+        }        
 
         userSequence.push(color);
 
