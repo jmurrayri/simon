@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import timeout from 'await-timeout';
 import Button from './Button';
-import GameOver from './GameOver';
 import constants from './constants';
 import {randomColor} from './utility';
 
@@ -13,7 +12,6 @@ const initialState = {
     userSequence: [],
     litColor: null,
     buildingTargetSequence: false,    
-    gameOver: false,                
 };
 
 export default class Simon extends PureComponent {
@@ -26,12 +24,14 @@ export default class Simon extends PureComponent {
         this.press = this.press.bind(this);
         this.light = this.light.bind(this);
         this.reinitialize = this.reinitialize.bind(this);
+        this.gameOver = this.gameOver.bind(this);
 
         this.audios = {};
         this.audios[constants.yellow] = new Audio(`./audio/${constants.yellow}.mp3`);
         this.audios[constants.blue] = new Audio(`./audio/${constants.blue}.mp3`);
         this.audios[constants.green] = new Audio(`./audio/${constants.green}.mp3`);
         this.audios[constants.red] = new Audio(`./audio/${constants.red}.mp3`);
+        this.audios.fail = new Audio('./audio/fail.mp3');
     }
 
     async next() {
@@ -57,6 +57,22 @@ export default class Simon extends PureComponent {
         });
     }
 
+    async gameOver(color) {
+        const audio = this.audios.fail;
+        audio.play();
+        this.setState({
+            litColor: color,
+        });
+
+        await timeout.set(constants.failLitDuration);
+        this.setState({
+            litColor: null,
+        });
+        await timeout.set(constants);
+
+        this.reinitialize();
+    }
+
     async press(color) {
         const { targetSequence, buildingTargetSequence, litColor } = this.state;
         const userSequence = [...this.state.userSequence];
@@ -69,9 +85,7 @@ export default class Simon extends PureComponent {
 
         for (let i = 0; i < userSequence.length; i++) {
             if (targetSequence[i] !== userSequence[i]) {
-                this.setState({
-                    gameOver: true,
-                });
+                this.gameOver(targetSequence[i]);
                 return;
             }
         }
@@ -115,12 +129,11 @@ export default class Simon extends PureComponent {
     }
 
     render() {
-        const { litColor, targetSequence, userSequence, gameOver } = this.state;
+        const { litColor, targetSequence, userSequence } = this.state;
 
         return (
             <div className="simon">
                 <button className={classNames('go', {hide: targetSequence.length > 0})} onClick={() => this.next()}>GO!</button>
-                <GameOver targetSequence={targetSequence} userSequence={userSequence} hide={gameOver === false} onClose={this.reinitialize} />
                 <Button 
                     color={constants.yellow} 
                     lit={litColor === constants.yellow}
