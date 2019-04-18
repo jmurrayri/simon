@@ -1,13 +1,13 @@
 {
   "main.css": "/simon/static/css/main.43cfc624.chunk.css",
-  "main.js": "/simon/static/js/main.4dd00977.chunk.js",
-  "main.js.map": "/simon/static/js/main.4dd00977.chunk.js.map",
+  "main.js": "/simon/static/js/main.f197f5a9.chunk.js",
+  "main.js.map": "/simon/static/js/main.f197f5a9.chunk.js.map",
   "runtime~main.js": "/simon/static/js/runtime~main.24bf3572.js",
   "runtime~main.js.map": "/simon/static/js/runtime~main.24bf3572.js.map",
   "static/js/2.3e0f3fa1.chunk.js": "/simon/static/js/2.3e0f3fa1.chunk.js",
   "static/js/2.3e0f3fa1.chunk.js.map": "/simon/static/js/2.3e0f3fa1.chunk.js.map",
   "index.html": "/simon/index.html",
-  "precache-manifest.4bf2a9ecd2966b48f20774f83e56fc00.js": "/simon/precache-manifest.4bf2a9ecd2966b48f20774f83e56fc00.js",
+  "precache-manifest.7b503eec24308e7f5d5847a4745bd33b.js": "/simon/precache-manifest.7b503eec24308e7f5d5847a4745bd33b.js",
   "service-worker.js": "/simon/service-worker.js",
   "static/css/main.43cfc624.chunk.css.map": "/simon/static/css/main.43cfc624.chunk.css.map"
 }
