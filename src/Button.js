@@ -7,7 +7,7 @@ export default class Button extends PureComponent {
         const { color, lit, onPress } = this.props;
         
         return (
-            <div className={classNames('button', color, { lit })} onClick={() => onPress(color)} />
+            <button className={classNames('button', color, { lit })} onClick={() => onPress(color)} />
         );
     }
 }
