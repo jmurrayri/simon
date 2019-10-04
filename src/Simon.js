@@ -11,7 +11,8 @@ const initialState = {
     targetSequence: [],
     userSequence: [],
     litColor: null,
-    buildingTargetSequence: false,    
+    buildingTargetSequence: false,
+    finalSuccessCount: null,    
 };
 
 export default class Simon extends PureComponent {
@@ -62,10 +63,14 @@ export default class Simon extends PureComponent {
     }
 
     async gameOver(color) {
+        const { targetSequence } = this.state;
+
+        const finalSuccessCount = targetSequence.length - 1;
         const audio = this.audios.fail;
         audio.play();
         this.setState({
             litColor: color,
+            finalSuccessCount,
         });
 
         await timeout.set(constants.failLitDuration);
@@ -142,11 +147,14 @@ export default class Simon extends PureComponent {
     }
 
     render() {
-        const { litColor, targetSequence, userSequence } = this.state;
+        const { litColor, targetSequence, userSequence, finalSuccessCount } = this.state;
 
         return (
             <div className="simon">
                 <button className={classNames('go', {hide: targetSequence.length > 0})} onClick={() => this.next()}>GO!</button>
+                <div className={classNames('successCount', {hide: finalSuccessCount === null})}>
+                    <div className="center">{finalSuccessCount}</div>
+                </div>
                 <Button 
                     color={constants.yellow} 
                     lit={litColor === constants.yellow}
